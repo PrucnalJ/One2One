@@ -14,7 +14,8 @@ See README.md for the page list and where content lives.
 
 ## Current status and next step
 
-- The site is finished as a first draft and has been reviewed visually at desktop and mobile widths.
+- The site is finished as a first draft. Reviewed at desktop, tablet, 390px and 320px; no page overflows
+  horizontally and every link and image on the live preview resolves.
 - Source is on GitHub at https://github.com/PrucnalJ/One2One (branch `main`, PrucnalJ account). The GitHub CLI on
   this machine is already logged in as PrucnalJ; if it is switched to another account, run
   `gh auth switch --user PrucnalJ` before pushing.
@@ -38,15 +39,14 @@ Environment notes:
 - Port 4321 is often occupied by another process on this machine; Astro picks the next free port.
 - On Astro 7, `astro preview` runs as a background daemon. Stop it with `npx astro preview stop`.
 
-## Open items that need answers from Chris (marked TODO in the code)
+## Open items that need answers from Chris
 
-- Office hours. The old site listed none; Monday to Friday 9 to 5 is a placeholder in `src/data/site.ts`.
-- Social profile URLs. The footer icons stay hidden until the strings in `site.social` are filled in.
-- CMS disclaimer numbers in `site.disclaimer`: how many organizations and how many products One2One represents.
-  This statement is required on third-party Medicare marketing materials and currently shows "[number]".
-- Founding year, and Jen's last name if she wants it shown.
-- Real photos. Every photo in `public/images/` is an Unsplash stock placeholder (see CREDITS.md there).
-  Team cards show initials on purpose; do not add stock headshots for named people.
+See **CONTENT-NEEDED.md** in this folder for the full list written for the client. In short: the CMS
+disclaimer numbers (required by Medicare marketing rules, currently "[number]"), office hours, real
+photographs, Jen's last name, the founding year, social URLs, and where form submissions should be sent.
+
+Do not invent any of these. Every photo in `public/images/` is an Unsplash stock placeholder; see
+CREDITS.md there. Team cards show initials on purpose, so do not add stock headshots for named people.
 
 ## Conventions
 
