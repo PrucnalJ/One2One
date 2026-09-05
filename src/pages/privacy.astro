@@ -1,11 +1,12 @@
 ---
+import { url } from '../lib/url';
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
 ---
 <Base title="Privacy Policy" description={`How ${site.name} collects, uses, and protects your information.`} noindex>
   <section class="page-hero">
     <div class="container">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>Privacy</nav>
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={url('/')}>Home</a><span>/</span>Privacy</nav>
       <h1>Privacy Policy</h1>
       <p class="lead">Last updated: September 2026</p>
     </div>

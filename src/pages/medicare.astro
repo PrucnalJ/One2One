@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icons.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -10,7 +11,7 @@ import { services, medicareParts, enrollmentPeriods } from '../data/site';
 >
   <section class="page-hero">
     <div class="container">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>Medicare 101</nav>
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={url('/')}>Home</a><span>/</span>Medicare 101</nav>
       <span class="eyebrow">Medicare 101</span>
       <h1>Medicare, explained in <em>plain English</em></h1>
       <p class="lead">The basics you need before your first conversation with us. No jargon and no sales pitch. Just the parts, the paths, and the dates that matter.</p>
@@ -75,7 +76,7 @@ import { services, medicareParts, enrollmentPeriods } from '../data/site';
         <span class="eyebrow">Mark your calendar</span>
         <h2>When you can enroll or make changes</h2>
         <p class="lead">Missing a window can mean penalties or waiting a year. These are the dates we help clients keep track of.</p>
-        <a href="/contact/" class="btn btn-primary">Ask about your dates <Icon name="arrow" /></a>
+        <a href={url('/contact/')} class="btn btn-primary">Ask about your dates <Icon name="arrow" /></a>
       </div>
       <ol class="timeline">
         {enrollmentPeriods.map((e, i) => (

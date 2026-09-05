@@ -1,11 +1,12 @@
 ---
+import { url } from '../lib/url';
 import Icon from './Icons.astro';
 ---
 <!--
   Form handling: this markup works with Netlify Forms out of the box.
   If hosting elsewhere, change the action to a Formspree/Basin endpoint.
 -->
-<form class="form" name="schedule-call" method="POST" data-netlify="true" netlify-honeypot="company" action="/thank-you/">
+<form class="form" name="schedule-call" method="POST" data-netlify="true" netlify-honeypot="company" action={url('/thank-you/')}>
   <input type="hidden" name="form-name" value="schedule-call" />
   <p class="visually-hidden" aria-hidden="true"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off" /></label></p>
   <div class="form-row">

@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import { site } from '../data/site';
 import Icon from './Icons.astro';
 const year = new Date().getFullYear();
@@ -12,7 +13,7 @@ const socials = [
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" aria-label="One2One Insurance Advisors home"><img src="/images/logo.png" alt="One2One Insurance Advisors" width="450" height="247" loading="lazy" /></a>
+        <a href={url('/')} aria-label="One2One Insurance Advisors home"><img src={url('/images/logo.png')} alt="One2One Insurance Advisors" width="450" height="247" loading="lazy" /></a>
         <p>Independent Medicare advisors serving Murrysville and Western Pennsylvania. We compare plans across carriers, and our help is always free to you.</p>
         {socials.length > 0 && (
           <div class="social">
@@ -26,12 +27,12 @@ const socials = [
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/medicare/">Medicare 101</a></li>
-          <li><a href="/about/">Our Team</a></li>
-          <li><a href="/faq/">FAQ</a></li>
-          <li><a href="/contact/">Contact</a></li>
-          <li><a href="/privacy/">Privacy Policy</a></li>
+          <li><a href={url('/')}>Home</a></li>
+          <li><a href={url('/medicare/')}>Medicare 101</a></li>
+          <li><a href={url('/about/')}>Our Team</a></li>
+          <li><a href={url('/faq/')}>FAQ</a></li>
+          <li><a href={url('/contact/')}>Contact</a></li>
+          <li><a href={url('/privacy/')}>Privacy Policy</a></li>
         </ul>
       </div>
 
@@ -48,7 +49,7 @@ const socials = [
       <div>
         <h4>Monthly newsletter</h4>
         <p class="footer-news">Enrollment reminders, plan change alerts, and Medicare tips in plain English. Once a month, no spam.</p>
-        <form class="footer-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="company" action="/subscribed/">
+        <form class="footer-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="company" action={url('/subscribed/')}>
           <input type="hidden" name="form-name" value="newsletter" />
           <p class="visually-hidden" aria-hidden="true"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off" /></label></p>
           <label class="visually-hidden" for="footer-email">Email address</label>

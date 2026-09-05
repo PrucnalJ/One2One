@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
 ---
@@ -9,9 +10,9 @@ import { site } from '../data/site';
       <h1>We couldn't find that page</h1>
       <p class="lead">The link may be out of date. Try one of these instead, or call us at <a href={site.phoneHref}>{site.phone}</a>.</p>
       <p class="links">
-        <a href="/" class="btn btn-primary">Home</a>
-        <a href="/medicare/" class="btn btn-outline">Medicare 101</a>
-        <a href="/contact/" class="btn btn-outline">Contact</a>
+        <a href={url('/')} class="btn btn-primary">Home</a>
+        <a href={url('/medicare/')} class="btn btn-outline">Medicare 101</a>
+        <a href={url('/contact/')} class="btn btn-outline">Contact</a>
       </p>
     </div>
   </section>

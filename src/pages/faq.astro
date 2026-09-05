@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icons.astro';
 import Faq from '../components/Faq.astro';
@@ -22,7 +23,7 @@ const faqSchema = {
 >
   <section class="page-hero">
     <div class="container">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>FAQ</nav>
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={url('/')}>Home</a><span>/</span>FAQ</nav>
       <span class="eyebrow">Common questions</span>
       <h1>Medicare <em>FAQ</em></h1>
       <p class="lead">Quick answers to the questions we hear most often. If yours isn't here, call us. We answer questions for free, whether or not you become a client.</p>
@@ -36,11 +37,11 @@ const faqSchema = {
       </div>
       <aside class="faq-aside reveal" style="--d:120ms">
         <div class="aside-card">
-          <img src="/images/consult-800.jpg" alt="Two people talking across a table with a laptop between them" width="800" height="533" loading="lazy" />
+          <img src={url('/images/consult-800.jpg')} alt="Two people talking across a table with a laptop between them" width="800" height="533" loading="lazy" />
           <div class="aside-body">
             <h3>Still have questions?</h3>
             <p>Every situation is a little different. Tell us about yours and we'll give you a straight answer.</p>
-            <a href="/contact/" class="btn btn-primary">Schedule a Call <Icon name="arrow" /></a>
+            <a href={url('/contact/')} class="btn btn-primary">Schedule a Call <Icon name="arrow" /></a>
             <a href={site.phoneHref} class="text-link"><Icon name="phone" /> {site.phone}</a>
           </div>
         </div>

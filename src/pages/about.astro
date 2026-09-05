@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icons.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -17,7 +18,7 @@ const values = [
 >
   <section class="page-hero">
     <div class="container">
-      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>Our Team</nav>
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={url('/')}>Home</a><span>/</span>Our Team</nav>
       <span class="eyebrow">Our team</span>
       <h1>Meet Your <em>Medicare Advisors</em></h1>
       <p class="lead">One2One Insurance Advisors is a team of independent agents who specialize in Medicare. We're not tied to any single carrier — which means our only priority is finding the right plan for you, at no cost.</p>
@@ -29,8 +30,8 @@ const values = [
     <div class="container split">
       <div class="split-media reveal round-alt">
         <img
-          src="/images/handshake-800.jpg"
-          srcset="/images/handshake-800.jpg 800w, /images/handshake-1600.jpg 1600w"
+          src={url('/images/handshake-800.jpg')}
+          srcset={`${url('/images/handshake-800.jpg')} 800w, ${url('/images/handshake-1600.jpg')} 1600w`}
           sizes="(max-width: 900px) 100vw, 50vw"
           alt="Two people shaking hands across a desk"
           width="1600" height="1067"

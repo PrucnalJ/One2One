@@ -15,25 +15,26 @@ See README.md for the page list and where content lives.
 ## Current status and next step
 
 - The site is finished as a first draft and has been reviewed visually at desktop and mobile widths.
-- Nothing has been committed or deployed yet. This folder is not a git repo.
-- The immediate goal is a temporary public URL so Darla can review the site.
-
-Plan for the temporary URL:
-
-1. Switch the GitHub CLI to the **PrucnalJ** account (`gh auth switch --user PrucnalJ`, or `gh auth login` if
-   that account has not been added yet). The user has already created a repo for this site under that account;
-   ask for the repo name or URL.
-2. `git init`, commit everything, add the remote, push to `main`.
-3. Deploy. Recommended: Netlify, importing the GitHub repo (netlify.toml already sets build command and publish
-   dir, and both forms rely on Netlify Forms). Vercel importing the same repo also works for a preview. Avoid
-   GitHub Pages unless a custom domain is attached: the site uses absolute links (`/about/`, `/images/...`) and
-   would need an Astro `base` path plus link rewrites to live under `/repo-name/`.
-4. Send the resulting URL to the user to forward to Darla.
+- Source is on GitHub at https://github.com/PrucnalJ/One2One (branch `main`, PrucnalJ account). The GitHub CLI on
+  this machine is already logged in as PrucnalJ; if it is switched to another account, run
+  `gh auth switch --user PrucnalJ` before pushing.
+- A temporary review copy is served by GitHub Pages at **https://prucnalj.github.io/One2One/**. The workflow in
+  `.github/workflows/pages.yml` rebuilds and redeploys it on every push to `main` (about 1 to 2 minutes). It
+  builds with `SITE_URL`, `BASE_PATH=/One2One`, and `PUBLIC_NOINDEX=1` so links work under the subfolder and the
+  preview stays out of search results. The two forms do not submit on the preview because they rely on Netlify
+  Forms; that is expected.
+- Production hosting is still intended to be Netlify (import the GitHub repo; `netlify.toml` already sets the
+  build command and publish dir, and both forms rely on Netlify Forms). The Netlify CLI is installed globally
+  but not logged in. When the site goes live on one2oneadvisor.com, the GitHub Pages workflow can be deleted.
 
 Environment notes:
 
-- The workspace path contains an ampersand, so `.npmrc` sets `script-shell` to Git Bash. Keep it.
-- Vercel CLI is installed globally but not logged in. Netlify CLI is not installed.
+- The workspace path contains an ampersand, so `.npmrc` sets `script-shell` to Git Bash. Keep it. The Pages
+  workflow overrides that setting with `npm_config_script_shell=/bin/bash` because the Windows path does not
+  exist on the Linux runner.
+- To reproduce the preview build locally from Git Bash, set `MSYS2_ENV_CONV_EXCL='*'` first. Otherwise MSYS
+  rewrites `BASE_PATH=/One2One` into a Windows path like `/C:/Program Files/Git/One2One`.
+- Vercel CLI is installed globally but not logged in.
 - Port 4321 is often occupied by another process on this machine; Astro picks the next free port.
 - On Astro 7, `astro preview` runs as a background daemon. Stop it with `npx astro preview stop`.
 
@@ -50,6 +51,9 @@ Environment notes:
 ## Conventions
 
 - Content lives in `src/data/site.ts`. Pages and components read from it; do not hard-code business details.
+- Root-relative links and asset paths go through `url()` from `src/lib/url.ts` (`href={url('/about/')}`), which
+  prefixes Astro's `base`. It is a no-op in production and is what makes the GitHub Pages subfolder preview work.
+  Do not write bare `href="/..."` or `src="/..."` in templates.
 - Design tokens are in `src/styles/global.css`: navy `#1a1c42` and sky blue `#88bde0` from the logo, a gold
   accent for the main call to action on dark backgrounds, Newsreader for headings, Figtree for body text.
 - Do not invent testimonials, statistics, or backstory. Everything on the site traces to the old site's copy

@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icons.astro';
 ---
@@ -9,7 +10,7 @@ import Icon from '../components/Icons.astro';
       <span class="eyebrow">You're on the list</span>
       <h1>Thank you for subscribing!</h1>
       <p class="lead">Look for enrollment reminders, plan change alerts, and Medicare tips in plain English once a month. Have a great day!</p>
-      <p><a href="/" class="btn btn-primary">Back to home</a></p>
+      <p><a href={url('/')} class="btn btn-primary">Back to home</a></p>
     </div>
   </section>
 </Base>

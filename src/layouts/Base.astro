@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -17,6 +18,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const fullTitle = title.includes('One2One') ? title : `${title} | One2One Insurance Advisors, Murrysville PA`;
 // Set after Google Search Console setup. Leave empty to omit.
 const GOOGLE_SITE_VERIFICATION = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? '';
+// Set PUBLIC_NOINDEX=1 at build time to keep a preview deployment (e.g. GitHub Pages) out of search results.
+const noindexAll = import.meta.env.PUBLIC_NOINDEX === '1';
 
 const sameAs = Object.values(site.social).filter(Boolean);
 const agencySchema = {
@@ -64,7 +67,7 @@ const schemas = [agencySchema, ...(schema ? (Array.isArray(schema) ? schema : [s
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
+    <meta name="robots" content={noindexAll ? 'noindex,nofollow' : noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
     {GOOGLE_SITE_VERIFICATION && <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />}
     <meta name="geo.region" content="US-PA" />
     <meta name="geo.placename" content="Murrysville" />
@@ -74,16 +77,16 @@ const schemas = [agencySchema, ...(schema ? (Array.isArray(schema) ? schema : [s
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    <meta property="og:image" content={new URL(url(ogImage), Astro.site).href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#1a1c42" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
+    <link rel="sitemap" href={url('/sitemap-index.xml')} />
     <script is:inline>document.documentElement.classList.add('js');</script>
-    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+    {preloadImage && <link rel="preload" as="image" href={url(preloadImage)} fetchpriority="high" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&display=swap" rel="stylesheet" />
