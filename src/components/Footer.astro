@@ -26,7 +26,7 @@ const socials = [
 
       <div>
         <h4>Explore</h4>
-        <ul>
+        <ul class="footer-links">
           <li><a href={url('/')}>Home</a></li>
           <li><a href={url('/medicare/')}>Medicare 101</a></li>
           <li><a href={url('/about/')}>Our Team</a></li>
@@ -95,6 +95,13 @@ const socials = [
   .footer-bottom { background: var(--navy-900); color: rgba(255, 255, 255, 0.72); font-size: 0.86rem; padding: 1.7rem 0; line-height: 1.55; }
   .footer-bottom p { margin: 0 0 0.6rem; max-width: 110ch; }
   .footer-legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem; margin-top: 1.1rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.12); color: rgba(255, 255, 255, 0.85); }
+  /* On a phone these links were only 20px tall, well under a comfortable
+     touch target, and sat close enough together to mis-tap. */
+  @media (max-width: 600px) {
+    .footer-links { gap: 0; }
+    .footer-links li a { display: block; padding: 0.6rem 0; }
+    .footer-contact { gap: 1rem; }
+  }
   @media (max-width: 1000px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
 </style>
