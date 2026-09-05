@@ -1,0 +1,29 @@
+---
+import Icon from './Icons.astro';
+---
+<!--
+  Form handling: this markup works with Netlify Forms out of the box.
+  If hosting elsewhere, change the action to a Formspree/Basin endpoint.
+-->
+<form class="form" name="schedule-call" method="POST" data-netlify="true" netlify-honeypot="company" action="/thank-you/">
+  <input type="hidden" name="form-name" value="schedule-call" />
+  <p class="visually-hidden" aria-hidden="true"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off" /></label></p>
+  <div class="form-row">
+    <label>Name <input type="text" name="name" required autocomplete="name" placeholder="Your name" /></label>
+    <label>Phone <input type="tel" name="phone" required autocomplete="tel" placeholder="(724) 555-0100" /></label>
+  </div>
+  <label>Email <input type="email" name="email" autocomplete="email" placeholder="you@example.com" /></label>
+  <label>What can we help with?
+    <select name="interest">
+      <option>Turning 65 / new to Medicare</option>
+      <option>Reviewing my current plan</option>
+      <option>Medicare Advantage vs. Supplement</option>
+      <option>Prescription drug coverage</option>
+      <option>Still working past 65</option>
+      <option>Something else</option>
+    </select>
+  </label>
+  <label>Message <textarea name="message" placeholder="Anything you'd like us to know before we call?"></textarea></label>
+  <button type="submit" class="btn btn-primary btn-lg">Send message <Icon name="arrow" /></button>
+  <p class="form-note">We'll reach out within one business day. Please don't include your Medicare number or other sensitive details here.</p>
+</form>

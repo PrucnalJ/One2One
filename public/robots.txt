@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you/
+Disallow: /subscribed/
+
+Sitemap: https://one2oneadvisor.com/sitemap-index.xml

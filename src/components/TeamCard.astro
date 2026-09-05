@@ -1,0 +1,13 @@
+---
+import type { TeamMember } from '../data/site';
+import Icon from './Icons.astro';
+interface Props { member: TeamMember; long?: boolean; delay?: number; }
+const { member, long = false, delay = 0 } = Astro.props;
+---
+<article class="team-card reveal" style={`--d:${delay}ms`}>
+  <div class="avatar" aria-hidden="true">{member.initials}</div>
+  <h3>{member.name}</h3>
+  <p class="role">{member.role}</p>
+  <p class="bio">{long ? member.long : member.bio}</p>
+  {member.email && <a href={`mailto:${member.email}`} class="text-link"><Icon name="mail" /> {member.email}</a>}
+</article>

@@ -1,0 +1,166 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icons.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { services, medicareParts, enrollmentPeriods } from '../data/site';
+---
+<Base
+  title="Medicare 101: Parts A, B, C, D and Enrollment Dates Explained"
+  description="A plain-English guide to Medicare from One2One Insurance Advisors in Murrysville, PA. The four parts, Medicare Advantage vs. Supplement, enrollment periods, and how we help for free."
+>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>Medicare 101</nav>
+      <span class="eyebrow">Medicare 101</span>
+      <h1>Medicare, explained in <em>plain English</em></h1>
+      <p class="lead">The basics you need before your first conversation with us. No jargon and no sales pitch. Just the parts, the paths, and the dates that matter.</p>
+    </div>
+  </section>
+
+  <!-- Parts -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">The building blocks</span>
+        <h2>The four parts of Medicare</h2>
+        <p class="lead">Original Medicare is Parts A and B. Parts C and D are offered by private insurance companies that contract with Medicare.</p>
+      </div>
+      <div class="parts-grid">
+        {medicareParts.map((p, i) => (
+          <article class="part-card reveal" style={`--d:${i * 90}ms`}>
+            <span class="part-letter" aria-hidden="true">{p.part}</span>
+            <h3>Part {p.part} <small>{p.name}</small></h3>
+            <p>{p.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Two paths -->
+  <section class="section bg-paper">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Two ways to go</span>
+        <h2>Original Medicare with a Supplement, or Medicare Advantage?</h2>
+        <p class="lead">Most people end up on one of these two paths. Neither is better. The right one depends on your doctors, your prescriptions, your budget, and how you like to travel.</p>
+      </div>
+      <div class="table-wrap reveal">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th scope="col"><span class="visually-hidden">Feature</span></th>
+              <th scope="col">Original Medicare + Supplement</th>
+              <th scope="col">Medicare Advantage (Part C)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Monthly premiums</th><td>Part B premium, plus a Supplement premium and usually a Part D premium.</td><td>Part B premium, plus a plan premium that is often $0.</td></tr>
+            <tr><th scope="row">Doctors and hospitals</th><td>Any provider in the U.S. that accepts Medicare. No networks and no referrals.</td><td>A plan network (HMO or PPO). Going out of network may cost more or not be covered.</td></tr>
+            <tr><th scope="row">Out-of-pocket costs</th><td>Very predictable. The Supplement pays most of what Original Medicare does not.</td><td>Copays and coinsurance as you use care, capped by an annual out-of-pocket maximum.</td></tr>
+            <tr><th scope="row">Prescription drugs</th><td>A separate Part D plan.</td><td>Usually built into the plan.</td></tr>
+            <tr><th scope="row">Dental, vision, hearing</th><td>Generally not included. Stand-alone plans are available.</td><td>Often included as benefit allowances.</td></tr>
+            <tr><th scope="row">A good fit if you</th><td>Travel often, want the widest provider choice, and prefer a predictable monthly cost.</td><td>Want one bundled plan with lower monthly premiums and extra benefits, and are comfortable with a network.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted center table-note">These are general characteristics. Specific plan costs and benefits vary by county and by year. We'll walk through the actual numbers for your situation.</p>
+    </div>
+  </section>
+
+  <!-- Enrollment periods -->
+  <section class="section">
+    <div class="container periods">
+      <div class="periods-head">
+        <span class="eyebrow">Mark your calendar</span>
+        <h2>When you can enroll or make changes</h2>
+        <p class="lead">Missing a window can mean penalties or waiting a year. These are the dates we help clients keep track of.</p>
+        <a href="/contact/" class="btn btn-primary">Ask about your dates <Icon name="arrow" /></a>
+      </div>
+      <ol class="timeline">
+        {enrollmentPeriods.map((e, i) => (
+          <li class="timeline-item reveal" style={`--d:${i * 90}ms`}>
+            <span class="timeline-dot" aria-hidden="true"><Icon name="calendar" /></span>
+            <div class="timeline-body">
+              <span class="timeline-when">{e.when}</span>
+              <h3>{e.name}</h3>
+              <p>{e.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- What we help with -->
+  <section class="section bg-sky">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Where we come in</span>
+        <h2>What we help with</h2>
+        <p class="lead">Every service below is free. We're paid by the insurance carriers, never by you.</p>
+      </div>
+      <div class="help-grid">
+        {services.map((s, i) => (
+          <article class="help-card reveal" id={s.slug} style={`--d:${(i % 2) * 90}ms`}>
+            <span class="service-icon"><Icon name={s.icon} /></span>
+            <div>
+              <h3>{s.title}</h3>
+              <p>{s.short}</p>
+              <ul class="check-list compact">
+                {s.bullets.map((b) => <li><Icon name="check" /> <span>{b}</span></li>)}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container narrow center">
+      <p class="muted disclaimer">This page is a general overview, not a complete description of benefits. For official information visit <a href="https://www.medicare.gov" target="_blank" rel="noopener">Medicare.gov</a> or call 1-800-MEDICARE (1-800-633-4227).</p>
+    </div>
+  </section>
+
+  <CtaBand title="Have a question about your situation?" text="Every Medicare decision is personal. Tell us about your doctors, your prescriptions, and your budget, and we'll show you the options that fit. Always free." />
+</Base>
+
+<style>
+  .parts-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.3rem; }
+  .part-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.8rem 1.6rem; position: relative; overflow: hidden; }
+  .part-letter { position: absolute; right: -0.1em; top: -0.35em; font-family: var(--font-head); font-style: italic; font-size: 7rem; line-height: 1; color: var(--sky-100); pointer-events: none; }
+  .part-card h3 { position: relative; font-size: 1.5rem; margin-bottom: 0.6rem; display: grid; }
+  .part-card h3 small { font-family: var(--font-body); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sky-700); margin-top: 0.2rem; }
+  .part-card p { position: relative; color: var(--ink-soft); margin: 0; font-size: 1rem; }
+  @media (max-width: 1000px) { .parts-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .parts-grid { grid-template-columns: 1fr; } }
+
+  .table-note { margin-top: 1.2rem; font-size: 0.95rem; }
+
+  .periods { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+  .periods-head { position: sticky; top: 120px; }
+  .periods-head .lead { margin-bottom: 1.5rem; }
+  .timeline { list-style: none; padding: 0; margin: 0; position: relative; }
+  .timeline::before { content: ""; position: absolute; left: 25px; top: 20px; bottom: 20px; width: 2px; background: linear-gradient(var(--sky-300), var(--sky-100)); }
+  .timeline-item { display: flex; gap: 1.3rem; padding-bottom: 1.8rem; position: relative; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot { width: 52px; height: 52px; border-radius: 50%; background: var(--navy-900); color: #fff; display: grid; place-items: center; flex-shrink: 0; box-shadow: 0 0 0 6px var(--cream); position: relative; }
+  .timeline-dot :global(.icon) { width: 22px; height: 22px; }
+  .timeline-body { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.3rem 1.5rem; flex: 1; }
+  .timeline-when { display: inline-block; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-700); background: var(--gold-100); padding: 0.25rem 0.7rem; border-radius: 999px; margin-bottom: 0.6rem; }
+  .timeline-body h3 { font-size: 1.35rem; margin-bottom: 0.35rem; }
+  .timeline-body p { margin: 0; color: var(--ink-soft); font-size: 1rem; }
+  @media (max-width: 900px) { .periods { grid-template-columns: 1fr; } .periods-head { position: static; } }
+
+  .help-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.3rem; }
+  .help-card { display: flex; gap: 1.2rem; align-items: flex-start; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.8rem 1.6rem; }
+  .help-card .service-icon { margin: 0; }
+  .help-card h3 { font-size: 1.4rem; margin-bottom: 0.4rem; }
+  .help-card p { color: var(--ink-soft); margin-bottom: 0.9rem; }
+  .help-card .check-list.compact li { font-weight: 400; color: var(--ink); font-size: 0.98rem; }
+  @media (max-width: 860px) { .help-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 520px) { .help-card { flex-direction: column; } }
+
+  .disclaimer { font-size: 0.92rem; margin: 0; }
+</style>

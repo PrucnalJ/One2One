@@ -1,0 +1,36 @@
+---
+import Icon from './Icons.astro';
+---
+<section class="section-tight">
+  <div class="container">
+    <div class="newsletter reveal">
+      <div class="newsletter-copy">
+        <span class="eyebrow"><Icon name="mail-open" /> Monthly Medicare Newsletter</span>
+        <h2>Stay one step ahead of Medicare</h2>
+        <p>Stay informed with plan updates, enrollment reminders, and Medicare tips delivered straight to your inbox — once a month, no spam.</p>
+        <ul class="check-list compact">
+          <li><Icon name="check" /> Annual enrollment period reminders</li>
+          <li><Icon name="check" /> Plan change alerts that affect you</li>
+          <li><Icon name="check" /> Medicare tips in plain English</li>
+        </ul>
+      </div>
+      <form class="form newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="company" action="/subscribed/">
+        <input type="hidden" name="form-name" value="newsletter" />
+        <p class="visually-hidden" aria-hidden="true"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off" /></label></p>
+        <label>Email address <input type="email" name="email" required placeholder="you@example.com" autocomplete="email" /></label>
+        <button type="submit" class="btn btn-primary btn-lg">Subscribe <Icon name="arrow" /></button>
+        <p class="form-note">Unsubscribe anytime. We never share your email.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .newsletter { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; background: linear-gradient(135deg, var(--sky-100), var(--sky-50)); border: 1px solid var(--sky-200); border-radius: 28px; padding: clamp(1.6rem, 4vw, 3.2rem); position: relative; overflow: hidden; }
+  .newsletter::after { content: ""; position: absolute; width: 320px; height: 320px; border-radius: 50%; right: -120px; bottom: -160px; background: radial-gradient(circle, rgba(136, 189, 224, 0.4), transparent 65%); pointer-events: none; }
+  .newsletter-copy { position: relative; }
+  .newsletter-copy h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 0.6rem; }
+  .newsletter-copy p { color: var(--ink-soft); max-width: 50ch; }
+  .newsletter-form { position: relative; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.6rem; box-shadow: var(--shadow-sm); }
+  @media (max-width: 860px) { .newsletter { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icons.astro';
+import CtaBand from '../components/CtaBand.astro';
+import TeamCard from '../components/TeamCard.astro';
+import { team, areasServed } from '../data/site';
+
+const values = [
+  { icon: 'shield', title: 'Independent, always', text: 'We are not tied to any single carrier. We compare plans across companies and recommend the one that fits you, not the one that pays the most.' },
+  { icon: 'message', title: 'Plain English', text: 'Medicare has enough acronyms. We explain your options the way we would explain them to our own parents, and we keep explaining until it clicks.' },
+  { icon: 'calendar', title: 'Here every year', text: 'Plans change. So do your needs. We review your coverage every fall and stay one phone call away the rest of the year.' },
+];
+---
+<Base
+  title="Meet Our Team | Independent Medicare Advisors in Murrysville, PA"
+  description="Meet Chris, Darla, and Jen of One2One Insurance Advisors, a team of independent Medicare agents in Murrysville, PA. Not tied to any carrier. Our help is always free."
+>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>Our Team</nav>
+      <span class="eyebrow">Our team</span>
+      <h1>Meet Your <em>Medicare Advisors</em></h1>
+      <p class="lead">One2One Insurance Advisors is a team of independent agents who specialize in Medicare. We're not tied to any single carrier — which means our only priority is finding the right plan for you, at no cost.</p>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="section">
+    <div class="container split">
+      <div class="split-media reveal round-alt">
+        <img
+          src="/images/handshake-800.jpg"
+          srcset="/images/handshake-800.jpg 800w, /images/handshake-1600.jpg 1600w"
+          sizes="(max-width: 900px) 100vw, 50vw"
+          alt="Two people shaking hands across a desk"
+          width="1600" height="1067"
+          loading="lazy"
+        />
+      </div>
+      <div class="reveal" style="--d:120ms">
+        <span class="eyebrow">Our story</span>
+        <h2>An engineer's approach to a confusing system</h2>
+        <p>Chris Grieco is a University of Pittsburgh engineering graduate, and he brings an engineer's discipline to Medicare planning: gather the facts, compare every option, and let the numbers point to the answer. He founded One2One Insurance Advisors to bring that kind of unbiased, personalized guidance to Western Pennsylvania.</p>
+        <p>The name is the promise. One advisor, one client, and a plan built around your doctors, your prescriptions, and your budget.</p>
+        <p>Because we are independent, we are not tied to any single carrier. And because the carriers pay us, our consultation services are always free to you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section bg-paper">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">The people</span>
+        <h2>Who you'll be working with</h2>
+        <p class="lead">Three people, one phone number, and no call center. When you reach out, you reach us.</p>
+      </div>
+      <div class="team-grid">
+        {team.map((m, i) => <TeamCard member={m} long delay={i * 100} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">What we stand for</span>
+        <h2>Three promises we make to every client</h2>
+      </div>
+      <div class="values-grid">
+        {values.map((v, i) => (
+          <article class="value-card reveal" style={`--d:${i * 100}ms`}>
+            <span class="service-icon"><Icon name={v.icon} /></span>
+            <h3>{v.title}</h3>
+            <p>{v.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas -->
+  <section class="section-tight bg-sky">
+    <div class="container areas">
+      <div>
+        <span class="eyebrow"><Icon name="map" /> Where we work</span>
+        <h2>Serving Murrysville and all of Western Pennsylvania</h2>
+        <p class="lead">Our office is on Reed Boulevard in Murrysville, but most of our clients never need to visit. We meet by phone, by video, or at your kitchen table.</p>
+      </div>
+      <ul class="chips" aria-label="Communities we serve">
+        {areasServed.map((a) => <li>{a}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+  .value-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.9rem 1.7rem; }
+  .value-card h3 { font-size: 1.4rem; margin-bottom: 0.4rem; }
+  .value-card p { color: var(--ink-soft); margin: 0; }
+  @media (max-width: 900px) { .values-grid { grid-template-columns: 1fr; } }
+  .areas { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .areas h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); }
+  .areas .lead { margin-bottom: 0; }
+  @media (max-width: 900px) { .areas { grid-template-columns: 1fr; } }
+</style>

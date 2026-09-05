@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Privacy Policy" description={`How ${site.name} collects, uses, and protects your information.`} noindex>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>Privacy</nav>
+      <h1>Privacy Policy</h1>
+      <p class="lead">Last updated: September 2026</p>
+    </div>
+  </section>
+  <section class="section-tight">
+    <div class="container narrow prose">
+      <h2>What we collect</h2>
+      <p>When you use the contact or newsletter forms on this site, we collect the information you enter, such as your name, phone number, email address, and message. We do not ask for, and you should not send, your Medicare number, Social Security number, or health information through this website.</p>
+
+      <h2>How we use it</h2>
+      <p>We use your contact information to respond to your request, schedule a conversation, and, if you subscribe, send our monthly newsletter. You can unsubscribe from the newsletter at any time using the link in any email or by contacting us.</p>
+
+      <h2>Sharing</h2>
+      <p>We do not sell your personal information. We share it only with service providers who help us operate this website and deliver email, and only as needed to do so. If you become a client, information required to enroll you in a plan is handled under separate privacy notices provided by the insurance carrier.</p>
+
+      <h2>Cookies and analytics</h2>
+      <p>This site may use basic analytics to understand how visitors use it. We do not use advertising trackers.</p>
+
+      <h2>Your choices</h2>
+      <p>To review, correct, or delete the information we hold about you, or to opt out of communications, contact us at <a href={`mailto:${site.email}`}>{site.email}</a> or {site.phone}.</p>
+
+      <h2>Contact</h2>
+      <p>{site.name}<br />{site.address.street}<br />{site.address.city}, {site.address.state} {site.address.zip}</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .prose h2 { font-size: 1.5rem; margin-top: 2rem; }
+  .prose h2:first-child { margin-top: 0; }
+</style>

@@ -1,0 +1,272 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icons.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Newsletter from '../components/Newsletter.astro';
+import TeamCard from '../components/TeamCard.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { site, services, steps, team, faqs } from '../data/site';
+
+const trust = [
+  { icon: 'badge', title: 'Always free', text: 'No fees, no obligation, ever' },
+  { icon: 'shield', title: 'Truly independent', text: 'Not tied to any single carrier' },
+  { icon: 'calendar', title: 'Free annual review', text: 'We re-check your plan every fall' },
+  { icon: 'pin', title: 'Local and personal', text: 'Murrysville, serving Western PA' },
+];
+---
+<Base
+  title="One2One Insurance Advisors | Independent Medicare Advisors in Murrysville, PA"
+  description="Independent Medicare advisors in Murrysville, PA. We compare Medicare Advantage, Supplement, and Part D plans across carriers and help you choose with confidence. Always free. Call (724) 575-7628."
+  preloadImage="/images/hero-800.jpg"
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="hero-pill"><Icon name="handshake" /> Independent Medicare Advisors · Murrysville, PA</span>
+        <h1>Navigate Medicare with a <em>Trusted Partner</em></h1>
+        <p class="lead">We cut through the complexity so you can make confident decisions about your Medicare coverage — and our consultation services are always at no cost to you.</p>
+        <div class="hero-actions">
+          <a href="/contact/" class="btn btn-primary btn-lg">Schedule a Call <Icon name="arrow" /></a>
+          <a href={site.phoneHref} class="btn btn-outline btn-lg"><Icon name="phone" /> {site.phone}</a>
+        </div>
+        <ul class="hero-trust">
+          <li><Icon name="check" /> Always free</li>
+          <li><Icon name="check" /> Not tied to any carrier</li>
+          <li><Icon name="check" /> Local to Western PA</li>
+        </ul>
+      </div>
+      <div class="hero-media">
+        <div class="hero-shape" aria-hidden="true"></div>
+        <img
+          class="hero-photo"
+          src="/images/hero-800.jpg"
+          srcset="/images/hero-800.jpg 800w, /images/hero-1600.jpg 1600w"
+          sizes="(max-width: 960px) 90vw, 46vw"
+          alt="A smiling woman in her seventies chatting with friends over coffee"
+          width="1600" height="1067"
+          fetchpriority="high"
+        />
+        <div class="hero-card hero-card-1">
+          <span class="hero-card-icon"><Icon name="calendar" /></span>
+          <div><strong>Free annual review</strong><small>Every fall, we re-check your plan</small></div>
+        </div>
+        <div class="hero-card hero-card-2">
+          <span class="hero-card-icon gold"><Icon name="badge" /></span>
+          <div><strong>$0 cost to you</strong><small>Paid by carriers, never by you</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust strip -->
+  <section class="trust" aria-label="Why choose One2One">
+    <div class="container trust-grid">
+      {trust.map((t) => (
+        <div class="trust-item">
+          <span class="trust-icon"><Icon name={t.icon} /></span>
+          <div><strong>{t.title}</strong><small>{t.text}</small></div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">How we help</span>
+        <h2>Medicare guidance for every stage</h2>
+        <p class="lead">Whether you're turning 65, reviewing your current plan, or just have questions, we're here to help. Every service is free.</p>
+      </div>
+      <div class="services-grid">
+        {services.map((s, i) => (
+          <article class="service-card reveal" style={`--d:${(i % 3) * 90}ms`}>
+            <span class="service-icon"><Icon name={s.icon} /></span>
+            <h3>{s.title}</h3>
+            <p>{s.short}</p>
+            <a href={`/medicare/#${s.slug}`} class="text-link">Learn more <Icon name="arrow" /></a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why independent -->
+  <section class="section bg-paper">
+    <div class="container split">
+      <div class="split-media reveal round-alt">
+        <img
+          src="/images/portrait-800.jpg"
+          srcset="/images/portrait-800.jpg 800w, /images/portrait-1600.jpg 1600w"
+          sizes="(max-width: 900px) 100vw, 50vw"
+          alt="A smiling woman with silver hair outdoors in a warm jacket"
+          width="1600" height="1067"
+          loading="lazy"
+        />
+        <blockquote class="quote-card">
+          <Icon name="quote" />
+          Our only priority is finding the right plan for you.
+        </blockquote>
+      </div>
+      <div class="reveal" style="--d:120ms">
+        <span class="eyebrow">Why independent matters</span>
+        <h2>Advice that answers to you, not to a carrier</h2>
+        <p>One2One Insurance Advisors is a team of independent agents who specialize in Medicare. We're not tied to any single carrier — which means our only priority is finding the right plan for you, at no cost.</p>
+        <ul class="check-list">
+          <li><Icon name="check" /><div><strong>We compare across carriers.</strong> Medicare Advantage, Supplements, and Part D from the major carriers in Western PA, side by side.</div></li>
+          <li><Icon name="check" /><div><strong>Paid by the carriers, never by you.</strong> Our compensation comes directly from the insurance companies, keeping our advice unbiased.</div></li>
+          <li><Icon name="check" /><div><strong>We'll tell you when to stay put.</strong> If your current plan is still the best fit, we'll say so. No pressure to switch.</div></li>
+        </ul>
+        <a href="/about/" class="btn btn-outline">Meet the team <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section bg-navy steps-section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">How it works</span>
+        <h2>Four steps to a plan you actually understand</h2>
+        <p class="lead">No pressure, no jargon, and nothing to pay. Here's what working with us looks like.</p>
+      </div>
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li class="step reveal" style={`--d:${i * 100}ms`}>
+            <span class="step-n">{s.n}</span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Our team</span>
+        <h2>Meet Your Medicare Advisors</h2>
+        <p class="lead">Real people in Murrysville who pick up the phone. Get to know the team who will be with you year after year.</p>
+      </div>
+      <div class="team-grid">
+        {team.map((m, i) => <TeamCard member={m} delay={i * 100} />)}
+      </div>
+      <p class="center" style="margin-top:2rem"><a href="/about/" class="text-link">More about One2One <Icon name="arrow" /></a></p>
+    </div>
+  </section>
+
+  <!-- FAQ preview -->
+  <section class="section bg-paper">
+    <div class="container faq-grid">
+      <div class="reveal">
+        <span class="eyebrow">Common questions</span>
+        <h2>Medicare FAQ</h2>
+        <p class="lead">Quick answers to the questions we hear most often.</p>
+        <a href="/faq/" class="btn btn-outline">See all questions <Icon name="arrow" /></a>
+      </div>
+      <div class="reveal" style="--d:120ms">
+        <Faq items={faqs.slice(0, 4)} group="home-faq" />
+      </div>
+    </div>
+  </section>
+
+  <Newsletter />
+
+  <CtaBand />
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Get in touch</span>
+        <h2>Contact Us</h2>
+        <p class="lead">Have a question or want to chat? Reach out anytime — or fill out the form to schedule a call.</p>
+        <ul class="contact-list">
+          <li><span class="ci"><Icon name="pin" /></span><div><strong>Our Office</strong><a href={site.mapsUrl} target="_blank" rel="noopener">{site.address.street}<br />{site.address.city}, {site.address.state} {site.address.zip}</a></div></li>
+          <li><span class="ci"><Icon name="phone" /></span><div><strong>Phone</strong><a href={site.phoneHref}>{site.phone}</a></div></li>
+          <li><span class="ci"><Icon name="mail" /></span><div><strong>Email</strong><a href={`mailto:${site.email}`}>{site.email}</a></div></li>
+        </ul>
+      </div>
+      <div class="card form-card reveal" style="--d:120ms">
+        <h3>Schedule a Call</h3>
+        <p>Tell us a bit about yourself and we'll reach out to set up a time that works for you.</p>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero */
+  .hero { position: relative; overflow: hidden; padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(3rem, 7vw, 6rem); }
+  .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(1100px 520px at 88% -10%, var(--sky-100) 0%, transparent 60%), radial-gradient(700px 400px at -10% 110%, var(--gold-100) 0%, transparent 60%); }
+  .hero-grid { position: relative; display: grid; grid-template-columns: 1.08fr 0.92fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+  .hero-pill { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow-sm); padding: 0.45rem 1rem 0.45rem 0.7rem; border-radius: 999px; color: var(--navy-900); font-weight: 600; font-size: 0.92rem; margin-bottom: 1.4rem; }
+  .hero-pill :global(.icon) { color: var(--sky-600); width: 1.2rem; height: 1.2rem; }
+  .hero h1 { max-width: 13ch; margin-bottom: 1.1rem; }
+  .hero .lead { max-width: 50ch; margin-bottom: 1.9rem; font-size: 1.22rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1.7rem; }
+  .hero-trust { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem; color: var(--ink-soft); font-weight: 500; font-size: 0.98rem; }
+  .hero-trust li { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .hero-trust :global(.icon) { color: var(--sky-600); width: 1.15rem; height: 1.15rem; }
+  .hero-media { position: relative; padding: 1.5rem 1.5rem 2.5rem 0; }
+  .hero-shape { position: absolute; right: -6%; top: 0; width: 80%; height: 84%; background: linear-gradient(160deg, var(--sky-200), var(--sky-400)); border-radius: 48% 52% 42% 58% / 50% 40% 60% 50%; z-index: 0; opacity: 0.9; }
+  .hero-photo { position: relative; z-index: 1; width: 100%; aspect-ratio: 4 / 4.5; object-fit: cover; object-position: 38% 45%; border-radius: 150px 32px 32px 32px; box-shadow: var(--shadow-lg); }
+  .hero-card { position: absolute; z-index: 2; display: flex; align-items: center; gap: 0.8rem; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 0.8rem 1.1rem 0.8rem 0.8rem; box-shadow: var(--shadow); }
+  .hero-card strong { display: block; color: var(--navy-900); font-size: 1rem; line-height: 1.2; }
+  .hero-card small { color: var(--ink-mute); font-size: 0.85rem; white-space: nowrap; }
+  .hero-card-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--sky-100); color: var(--navy-900); display: grid; place-items: center; flex-shrink: 0; }
+  .hero-card-icon.gold { background: var(--gold-100); color: var(--gold-700); }
+  .hero-card-icon :global(.icon) { width: 22px; height: 22px; }
+  .hero-card-1 { left: -8%; bottom: 8%; animation: float 6s ease-in-out infinite; }
+  .hero-card-2 { right: -2%; top: 14%; animation: float 7s ease-in-out 1s infinite; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero h1 { max-width: none; }
+    .hero-media { max-width: 520px; margin: 0 auto; padding: 1rem 1rem 1.5rem 0; }
+    .hero-card-1 { left: 0; }
+    .hero-card-2 { right: 0; }
+  }
+  @media (max-width: 520px) {
+    .hero-card-2 { display: none; }
+    .hero-photo { border-radius: 90px 24px 24px 24px; }
+  }
+
+  /* Trust strip */
+  .trust { background: var(--paper); border-block: 1px solid var(--line); }
+  .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; padding: 1.5rem 0; }
+  .trust-item { display: flex; gap: 0.85rem; align-items: center; }
+  .trust-icon { width: 46px; height: 46px; border-radius: 13px; background: var(--sky-100); color: var(--navy-900); display: grid; place-items: center; flex-shrink: 0; }
+  .trust-icon :global(.icon) { width: 22px; height: 22px; }
+  .trust-item strong { display: block; color: var(--navy-900); line-height: 1.2; }
+  .trust-item small { color: var(--ink-mute); }
+  @media (max-width: 900px) { .trust-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .trust-grid { grid-template-columns: 1fr; } }
+
+  /* Quote card on the portrait */
+  .quote-card { position: absolute; left: -1.5rem; bottom: -1.5rem; max-width: 300px; margin: 0; background: var(--navy-900); color: #fff; border-radius: 16px; padding: 1.1rem 1.3rem; box-shadow: var(--shadow); font-family: var(--font-head); font-size: 1.2rem; line-height: 1.35; font-style: italic; }
+  .quote-card :global(.icon) { color: var(--sky-400); width: 1.4rem; height: 1.4rem; display: block; margin-bottom: 0.4rem; }
+  @media (max-width: 900px) { .quote-card { position: static; margin: -2rem 0 0 1rem; } }
+
+  /* Steps */
+  .steps-section { position: relative; overflow: hidden; }
+  .steps-section::before { content: ""; position: absolute; width: 700px; height: 700px; right: -260px; top: -320px; border-radius: 50%; background: radial-gradient(circle, rgba(136, 189, 224, 0.28), transparent 65%); pointer-events: none; }
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; position: relative; }
+  .step { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--radius); padding: 1.8rem 1.5rem; transition: background 0.25s, border-color 0.25s; }
+  .step:hover { background: rgba(255, 255, 255, 0.09); border-color: rgba(136, 189, 224, 0.5); }
+  .step-n { font-family: var(--font-head); font-style: italic; font-size: 2.8rem; color: var(--sky-400); line-height: 1; display: block; margin-bottom: 1rem; }
+  .step h3 { color: #fff; font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .step p { color: #c9d3e6; margin: 0; font-size: 1rem; }
+  @media (max-width: 960px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+
+  /* FAQ preview */
+  .faq-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+  .faq-grid .lead { margin-bottom: 1.6rem; }
+  @media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; } }
+</style>

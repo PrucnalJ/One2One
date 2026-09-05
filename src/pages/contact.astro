@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icons.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { site } from '../data/site';
+---
+<Base
+  title="Contact Us | Schedule a Free Medicare Consultation in Murrysville, PA"
+  description={`Contact One2One Insurance Advisors at ${site.address.street}, Murrysville, PA ${site.address.zip}. Call ${site.phone} or send a message to schedule a free Medicare consultation.`}
+>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>Contact</nav>
+      <span class="eyebrow">Get in touch</span>
+      <h1>Contact <em>Us</em></h1>
+      <p class="lead">Have a question or want to chat? Reach out anytime — or fill out the form to schedule a call. There's never a cost or an obligation.</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container contact-grid">
+      <div class="stack">
+        <div class="card info reveal">
+          <h3>Our Office</h3>
+          <p><Icon name="pin" /> <span>{site.address.street}<br />{site.address.city}, {site.address.state} {site.address.zip}</span></p>
+          <a href={site.mapsUrl} target="_blank" rel="noopener" class="btn btn-outline">Get directions <Icon name="arrow" /></a>
+        </div>
+        <div class="card info reveal" style="--d:80ms">
+          <h3>Call or email</h3>
+          <p><Icon name="phone" /> <a href={site.phoneHref}>{site.phone}</a></p>
+          <p><Icon name="mail" /> <a href={`mailto:${site.email}`}>{site.email}</a></p>
+        </div>
+        <div class="card reveal" style="--d:160ms">
+          <h3>Hours</h3>
+          <table class="hours">
+            <tbody>
+              {site.hours.map((h) => (
+                <tr><td>{h.day}</td><td>{h.open ? `${h.open} to ${h.close}` : h.note}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div class="card soft reveal" style="--d:240ms">
+          <h4><Icon name="home" /> Prefer to meet in person?</h4>
+          <p>We're happy to see you at our Murrysville office, or we can come to you anywhere in the Pittsburgh area. Phone and video calls work great too.</p>
+        </div>
+      </div>
+
+      <div class="card form-card reveal" style="--d:120ms">
+        <h3>Schedule a Call</h3>
+        <p>Tell us a bit about yourself and we'll reach out to set up a time that works for you.</p>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <iframe
+        class="map-embed"
+        src={site.mapsEmbed}
+        title="Map to One2One Insurance Advisors at 3925 Reed Blvd, Murrysville, PA"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+      <p class="muted map-note">We're in Suite 202 at 3925 Reed Boulevard in Murrysville, just off Route 22. Free parking at the door.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .info p { display: flex; gap: 0.6rem; align-items: flex-start; margin-bottom: 0.7rem; }
+  .info p:last-of-type { margin-bottom: 0; }
+  .info :global(.icon) { width: 1.2rem; height: 1.2rem; color: var(--sky-600); flex-shrink: 0; margin-top: 0.3rem; }
+  .info a { color: var(--ink); text-decoration: none; font-weight: 500; }
+  .info a:hover { color: var(--sky-700); text-decoration: underline; }
+  .info .btn { margin-top: 1rem; }
+  .card.soft { background: var(--sky-50); border-color: var(--sky-200); box-shadow: none; }
+  .card.soft h4 { display: flex; align-items: center; gap: 0.5rem; font-size: 1.05rem; }
+  .card.soft h4 :global(.icon) { color: var(--sky-600); }
+  .card.soft p { margin: 0; color: var(--ink-soft); font-size: 1rem; }
+  .map-note { margin: 0.9rem 0 0; font-size: 0.95rem; }
+</style>

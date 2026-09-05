@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icons.astro';
+---
+<Base title="You're Subscribed" description="Thanks for subscribing to the One2One Medicare newsletter." noindex>
+  <section class="section">
+    <div class="container narrow center">
+      <span class="mark" aria-hidden="true"><Icon name="mail-open" /></span>
+      <span class="eyebrow">You're on the list</span>
+      <h1>Thank you for subscribing!</h1>
+      <p class="lead">Look for enrollment reminders, plan change alerts, and Medicare tips in plain English once a month. Have a great day!</p>
+      <p><a href="/" class="btn btn-primary">Back to home</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .mark { width: 72px; height: 72px; border-radius: 50%; background: var(--sky-100); color: var(--navy-900); display: grid; place-items: center; margin: 0 auto 1.4rem; }
+  .mark :global(.icon) { width: 34px; height: 34px; }
+</style>

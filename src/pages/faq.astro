@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icons.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { faqs, site } from '../data/site';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<Base
+  title="Medicare FAQ | Answers from Independent Advisors in Murrysville, PA"
+  description="When to enroll, who is eligible, Medicare Advantage vs. Supplement, dental and vision coverage, and why our Medicare help is free. Answers from One2One Insurance Advisors."
+  schema={faqSchema}
+>
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span>FAQ</nav>
+      <span class="eyebrow">Common questions</span>
+      <h1>Medicare <em>FAQ</em></h1>
+      <p class="lead">Quick answers to the questions we hear most often. If yours isn't here, call us. We answer questions for free, whether or not you become a client.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container faq-layout">
+      <div class="faq-main reveal">
+        <Faq items={faqs} />
+      </div>
+      <aside class="faq-aside reveal" style="--d:120ms">
+        <div class="aside-card">
+          <img src="/images/consult-800.jpg" alt="Two people talking across a table with a laptop between them" width="800" height="533" loading="lazy" />
+          <div class="aside-body">
+            <h3>Still have questions?</h3>
+            <p>Every situation is a little different. Tell us about yours and we'll give you a straight answer.</p>
+            <a href="/contact/" class="btn btn-primary">Schedule a Call <Icon name="arrow" /></a>
+            <a href={site.phoneHref} class="text-link"><Icon name="phone" /> {site.phone}</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .faq-layout { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+  .faq-aside { position: sticky; top: 120px; }
+  .aside-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .aside-card img { aspect-ratio: 3 / 2; object-fit: cover; width: 100%; }
+  .aside-body { padding: 1.6rem; display: grid; gap: 0.6rem; justify-items: start; }
+  .aside-body h3 { margin: 0; font-size: 1.5rem; }
+  .aside-body p { color: var(--ink-soft); margin: 0 0 0.4rem; }
+  @media (max-width: 900px) { .faq-layout { grid-template-columns: 1fr; } .faq-aside { position: static; } }
+</style>
