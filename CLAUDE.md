@@ -16,10 +16,10 @@ See README.md for the page list and where content lives.
 
 - The site is finished as a first draft. Reviewed at desktop, tablet, 390px and 320px; no page overflows
   horizontally and every link and image on the live preview resolves.
-- Source is on GitHub at https://github.com/PrucnalJ/One2One (branch `main`, PrucnalJ account). The GitHub CLI on
+- Source is on GitHub at https://github.com/prucnal-sachdev/One2One (branch `main`, prucnal-sachdev org, pushed with the PrucnalJ account). The GitHub CLI on
   this machine is already logged in as PrucnalJ; if it is switched to another account, run
   `gh auth switch --user PrucnalJ` before pushing.
-- A temporary review copy is served by GitHub Pages at **https://prucnalj.github.io/One2One/**. The workflow in
+- A temporary review copy is served by GitHub Pages at **https://prucnal-sachdev.github.io/One2One/**. The workflow in
   `.github/workflows/pages.yml` rebuilds and redeploys it on every push to `main` (about 1 to 2 minutes). It
   builds with `SITE_URL`, `BASE_PATH=/One2One`, and `PUBLIC_NOINDEX=1` so links work under the subfolder and the
   preview stays out of search results. The two forms do not submit on the preview because they rely on Netlify

@@ -43,7 +43,7 @@ to match its tone. Chris should read it once and correct anything that misrepres
 
 ## Note on the preview link
 
-The review link is https://prucnalj.github.io/One2One/
+The review link is https://prucnal-sachdev.github.io/One2One/
 
 Two things behave differently there than they will on the real site. The contact and newsletter forms will
 not actually submit, because form handling only runs on the live host. And the preview is set to stay out of
